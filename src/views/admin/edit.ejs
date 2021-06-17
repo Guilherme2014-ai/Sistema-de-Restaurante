@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<%- include('../partials/headers.ejs') %>
+<body style="background: -webkit-radial-gradient(rgb(39, 39, 85),rgb(219, 219, 250),rgb(175, 175, 233));">
+    <div class="container" style="background: rgb(219, 219, 250);">
+
+
+      <%- include('../partials/navbar.ejs') %>
+          
+        <br><br>
+
+
+        <form action="/admin/edit" method="POST" class="form-control">
+
+            <h2>Ediçao de Cardápio</h2><hr><br>
+
+            <input type="hidden" name="id" id="id" value="<%= id %>">
+            <select class="form-control" name="category_id" id="category_id">
+                <option value="NULO">Categoria do Prato</option>
+                <% categories.forEach(function(category){ %>
+                    <option value="<%= category.id %>"><%= category.categoria %></option>
+                <% }) %> 
+            </select><br>
+
+            <input type="text" class="form-control" value="<%= food.name %>" name="name" id="name" placeholder="Nome do Prato" required><br>
+            <input type="text" class="form-control" value="<%= food.info %>" name="info" id="info" placeholder="Sobre o Prato" required><br>
+            <input type="text" class="form-control" value="<%= food.img %>" name="img" id="img" placeholder="Imagem do Prato" required><br>
+            <input type="text" class="form-control" value="<%= food.price %>" name="price" id="price" placeholder="Preço do Prato" required><br>
+
+            <button type="submit" class="btn btn-warning">Editar</button>
+        </form><br>
+
+
+    </div>
+</body>
+<%- include('../partials/scripts.ejs') %>
+</html>

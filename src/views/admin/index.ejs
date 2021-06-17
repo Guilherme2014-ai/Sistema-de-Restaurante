@@ -15,10 +15,14 @@
                 <img src="<%= food.img %>" alt="Comida" style="width: 280px; height: 170px;">
                 <br><br>
                 
-                <span><%= food.price %> $</span><br><br>
-                <p><%= food.info %></p>
-
-                <a href="cardapio/<%= food.id %>"><button class="btn btn-outline-success">Pedir</button></a>
+                <%= food.price %> $</span><br><br>
+                <p><%= food.info %></p><span>
+                
+                  
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    <a href="/admin/delete/<%= food.id %>"><button type="button" class="btn btn-danger">Apagar</button></a>
+                    <a href="/admin/edit/<%= food.id %>"><button type="button" class="btn btn-warning">Editar</button></a>
+                </div>
             </div>
         </div><br><br>
 

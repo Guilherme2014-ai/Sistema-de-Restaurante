@@ -1,21 +1,19 @@
-const router = require('express').Router()
-const knex = require('../database/index')
-
-router.get('/', async (req,res) => {
+module.exports.index = async (req,res,knex) => {
     try{
 
+        const categories = await knex.select("*").table("categorias")
         const data = await knex
                 .select("*")
                 .innerJoin('categorias','categorias.id','cardapio.category_id')
                 .table("cardapio")
 
 
-        res.render('public/index',{ data })
+        res.render('public/index',{ data, categories})
 
     } catch(err){console.error(err)}
-})
+}
 
-router.get('/cardapio/:nome', async (req,res) => {
+module.exports.food_id = async (req,res,knex) => {
     try{
         const nome = req.params.nome;
 
@@ -24,14 +22,20 @@ router.get('/cardapio/:nome', async (req,res) => {
             return
         }
 
+        const categories = await knex.select("*").table("categorias")
         const data = await knex
                     .select("*")
                     .where('categoria', nome)
                     .innerJoin('cardapio','categorias.id','cardapio.category_id')
                     .table("categorias")
 
-        res.render('public/food_id',{ data })
+        res.render('public/food_id',{ data, categories })
     } catch(err){console.error(err)}
-})
+}
 
-module.exports = router
+/*
+To Do...
+
+- The Client's Order 
+- Log in
+*/
