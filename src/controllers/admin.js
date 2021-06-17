@@ -31,8 +31,8 @@ module.exports.delete = (req,res,knex) => {
     .where('id', id)
     .delete()
     .table('cardapio') // NUNCA ESQUECA DISSO !!
-    .then((result) => {res.redirect('/admin')})
-    .catch((err) => {console.error(err)})
+    .then(result => {res.redirect('/admin')})
+    .catch(err => {console.error(err)})
 }
 
 
