@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<%- include('../partials/headers.ejs') %>
+<body style="background: -webkit-radial-gradient(rgb(39, 39, 85),rgb(219, 219, 250),rgb(175, 175, 233));">
+
+
+    <div class="container">
+
+        <%- include('../partials/navbar.ejs') %>
+          
+        <% data.forEach(function(food){ %>
+            <div class="card" style="box-shadow: rgb(149, 160, 161) 0px 3px 8px;">
+                <div class="card-header"><h2><%= food.nome %></h2></div>
+                <div class="card-body" style="background: -webkit-radial-gradient(rgb(235, 235, 235),rgb(219, 219, 250),rgb(192, 192, 240));">
+                    <img src="<%= food.img %>" alt="Comida" style="width: 280px; height: 170px;">
+                    <br><br>
+                    
+                    <p><%= food.info %></p>
+          
+                    <a href="cardapio/<%= food.id %>"><button class="btn btn-outline-success">Pedir</button></a>
+                </div>
+            </div><br><br>
+        <% }) %>
+
+    </div>
+
+
+</body>
+<%- include('../partials/scripts.ejs') %>
+</html>
