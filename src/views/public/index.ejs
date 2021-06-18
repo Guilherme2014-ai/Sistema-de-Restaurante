@@ -6,23 +6,31 @@
 
 
       <%- include('../partials/navbar.ejs') %>
-          
-        <% data.forEach(function(food){ %>
-          
-          <div class="card" style="box-shadow: rgb(149, 160, 161) 0px 3px 8px;">
-            <div class="card-header"><h2><%= food.name %></h2></div>
-            <div class="card-body" style="background: -webkit-radial-gradient(rgb(235, 235, 235),rgb(219, 219, 250),rgb(192, 192, 240));">
-                <img src="<%= food.img %>" alt="Comida" style="width: 280px; height: 170px;">
-                <br><br>
-                
-                <span><%= food.price %> $</span><br><br>
-                <p><%= food.info %></p>
 
-                <a href="cardapio/<%= food.id %>"><button class="btn btn-outline-success">Pedir</button></a>
-            </div>
-        </div><br><br>
+      <a href="/shoppingcart"><img src="https://image.flaticon.com/icons/png/512/126/126510.png" alt="shoppingcart" width="50"></a><br><br>
+          
+      <% data.forEach(function(food){ %>
+        
+        <div class="card" style="box-shadow: rgb(149, 160, 161) 0px 3px 8px;">
+          <div class="card-header"><h2><%= food.name %></h2></div>
+          <div class="card-body" style="background: -webkit-radial-gradient(rgb(235, 235, 235),rgb(219, 219, 250),rgb(192, 192, 240));">
+              <img src="<%= food.img %>" alt="Comida" style="width: 280px; height: 170px;">
+              <br><br>
+              
+              <span><%= food.price %> $</span><br><br>
+              <p><%= food.info %></p>
 
-        <% }) %>
+              <form action="/shoppingcart" method="POST">
+                <input type="hidden" name="name" value="<%= food.name %>">
+                <input type="hidden" name="price" value="<%= food.price %>">
+                <input type="hidden" name="img" value="<%= food.img %>">
+
+                <button type="submit" class="btn btn-success">Adicionar ao Carrinho</button>
+              </form>
+          </div>
+      </div><br><br>
+
+      <% }) %>
 
 
 

@@ -1,6 +1,12 @@
 module.exports.index = async (req,res,knex) => {
     try{
 
+        if(req.session.user){}else{
+            req.session.user = {
+                shoppingcart: []
+            }
+        }
+
         const categories = await knex.select("*").table("categorias")
         const data = await knex
                 .select("*")
@@ -12,7 +18,6 @@ module.exports.index = async (req,res,knex) => {
 
     } catch(err){console.error(err)}
 }
-
 module.exports.food_id = async (req,res,knex) => {
     try{
         const nome = req.params.nome;
@@ -29,13 +34,15 @@ module.exports.food_id = async (req,res,knex) => {
                     .innerJoin('cardapio','categorias.id','cardapio.category_id')
                     .table("categorias")
 
-        res.render('public/food_id',{ data, categories })
+        res.render('public/food_id.ejs',{ data, categories })
     } catch(err){console.error(err)}
 }
 
-/*
-To Do...
 
-- The Client's Order 
-- Log in
-*/
+module.exports.POST_shoppingcart = (req,res) => {
+    const { name,price,img } = req.body;
+    const obj = { name,price,img }
+
+    req.session.user["shoppingcart"].push(obj)
+    res.redirect('/')
+}

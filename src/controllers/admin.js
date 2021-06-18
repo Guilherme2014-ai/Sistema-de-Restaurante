@@ -34,7 +34,13 @@ module.exports.delete = (req,res,knex) => {
     .then(result => {res.redirect('/admin')})
     .catch(err => {console.error(err)})
 }
-
+/*
+module.exports.orders = async (req,res,knex) => {
+    try{
+        const data = await knex.select("*").table("pedidos")
+    } catch(err){console.error(err)}
+}
+*/
 
 module.exports.POST_edit = async (req,res,knex) => {
     try{
