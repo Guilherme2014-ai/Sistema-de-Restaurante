@@ -10,6 +10,9 @@ router.get('/cardapio/:nome', async (req,res) => {
 router.get('/shoppingcart', async (req,res) => {
     require('../controllers/public').shoppingcart(req,res,knex)
 })
+router.get('/order_request/:name_user/:preference/:tel_number/:address', async (req,res) => {
+    require('../controllers/public').order_request(req,res,knex)
+})
 
 
 router.post('/shoppingcart', async (req,res) => {

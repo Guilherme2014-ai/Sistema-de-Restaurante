@@ -9,6 +9,13 @@
 
       <h1>Carrinho de Compras</h1><hr>
 
+      <div class="input-group">
+        <span class="input-group-text">Informacoes Necessarias</span>
+        <input type="text" aria-label="First name" class="form-control" placeholder="Nome" id="name">
+        <input type="text" aria-label="Address" class="form-control" placeholder="Indereco" id="address">
+        <input type="text" aria-label="Tel_Number" class="form-control" placeholder="Numero do Celular" id="tel_number">
+      </div><br>
+
       <% if(req.session.user.shoppingcart.length == 0 || !req.session.user || req.session.user == undefined){ %>
         <h1 style="text-align: center;">Carrinho Vazio</h1><br>
       <% }else{ %>
@@ -25,13 +32,35 @@
           </div><br>
         <% }) %>
   
-        <form action="" method="POST">
-            <div class="btn btn-success form-control">Pedir</div>
-        </form><br>
+        <div class="btn btn-success form-control" id="pedir">Pedir</div><br><br>
       <% } %>
 
     </div>
 </body>
+<script>
+
+  var btn_order = document.getElementById('pedir')
+
+  btn_order.addEventListener('click',function(event){
+    var name = document.getElementById('name').value
+    var address = document.getElementById('address').value
+    var tel_number = document.getElementById('tel_number').value
+
+    var preference = prompt('Alguma Preferencia ?')
+
+
+    if(name.length == 0 ||  address.length == 0 || tel_number.length == 0 ){
+      res.redirect('/shoppingcart')
+      return
+    }
+    if(preference == undefined || preference.length == 0 || preference == null){
+      window.location.href = `/order_request/${name}/Nenhuma/${tel_number}/${address}`
+      return
+    }
+    window.location.href = `/order_request/${name}/${preference}/${tel_number}/${address}`
+  })
+
+</script>
 <%- include('../partials/scripts.ejs') %>
 </html>
 

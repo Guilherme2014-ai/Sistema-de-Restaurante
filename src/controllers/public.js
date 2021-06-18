@@ -45,11 +45,38 @@ module.exports.shoppingcart = async (req,res,knex) => {
 
     } catch(err){console.error(err)}
 }
+module.exports.order_request = async (req,res,knex) => {
+    try{
+
+        const order = req.session.user["shoppingcart"];
+        const { name_user,preference,tel_number,address } = req.params;
+
+
+        order.forEach(async function(elem){
+            const data = {
+                name: elem["name"],
+                name_user,
+                preference,
+                tel_number,
+                address,
+                img: elem["img"]
+            }
+
+            await knex
+            .insert(data)
+            .table('pedidos')
+        })
+        
+        
+        res.send("Tela de Obrigado")
+
+    } catch(err){console.error(err)}
+}
 
 
 module.exports.POST_shoppingcart = (req,res) => {
-    const { name,price,img,info } = req.body;
-    const obj = { name,price,img,info }
+    const { name,price,img } = req.body;
+    const obj = { name,price,img }
 
     req.session.user["shoppingcart"].push(obj)
     res.redirect('/')

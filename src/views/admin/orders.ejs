@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<%- include('../partials/headers.ejs') %>
+<body style="background: -webkit-radial-gradient(rgb(39, 39, 85),rgb(219, 219, 250),rgb(175, 175, 233));">
+    <div class="container" style="background: rgb(219, 219, 250);">
+
+
+      <%- include('../partials/navbar.ejs') %>
+          
+        <h1>Pedidos</h1><hr><br>
+
+
+        <% if(data.length == 0){ %>
+            <h1 style="text-align: center;">Sem Pedidos</h1><br>
+        <% }else{ %>
+            <% data.forEach(function(order){ %>
+                <div class="card mb-0" style="width: 460px;">
+                    <div style="margin: 20px;">
+                        <img style="border-radius: 8px;" src="<%= order.img %>" alt="Imagem do Pedido" width="420">
+                        <div class="card-body">
+                            <h4 class="card-title"><strong><%= order.name_user %></strong></h4><hr>
+                            <h5 class="card-title"><%= order.name %></h5>
+                            <p class="card-text"><%= order.preference %></p>
+        
+                            <small class="text-muted"><%= order.tel_number %></small>
+                            <p class="card-text"><small class="text-muted"><%= order.address %></small></p>
+                            <a href="/admin/orders/delete/<%= order.id %>"><div class="btn btn-success">Entregue ✔️</div></a>
+                        </div>
+                    </div>
+                </div><br>
+            <% }) %>
+        <% } %>  
+
+
+    </div><br>
+</body>
+<%- include('../partials/scripts.ejs') %>
+</html>

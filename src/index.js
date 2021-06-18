@@ -27,6 +27,4 @@ app.use('/', require('./routers/public'))
 app.use('/admin', require('./routers/admin'))
 
 //===========Listen============================
-app.listen(PORT,(err) => {err ? console.error(err) : console.log(`Server is Running at: ${PORT}`)})
-
-// Context: Session Already Created...
+app.listen(PORT,(err) => { err ? console.error(err) : console.log(`Server is Running at: ${PORT}`) })
