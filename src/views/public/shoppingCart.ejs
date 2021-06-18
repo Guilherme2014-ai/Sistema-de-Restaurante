@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<%- include('../partials/headers.ejs') %>
+<body style="background: -webkit-radial-gradient(rgb(39, 39, 85),rgb(219, 219, 250),rgb(175, 175, 233));">
+    <div class="container" style="background: rgb(219, 219, 250);">
+
+
+      <%- include('../partials/navbar.ejs') %>
+
+      <h1>Carrinho de Compras</h1><hr>
+
+      <% if(req.session.user.shoppingcart.length == 0 || !req.session.user || req.session.user == undefined){ %>
+        <h1 style="text-align: center;">Carrinho Vazio</h1><br>
+      <% }else{ %>
+        <% req.session.user["shoppingcart"].forEach(function(order){ %>
+          <div class="card" style="width: 18rem;">
+            <img src="<%= order.img %>" class="card-img-top" alt="<%= order.name %>">
+            <div class="card-body">
+              <h5 class="card-title"><%= order.name %></h5>
+              <p class="card-text"><%= order.info %></p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><%= order.price %> $</li>
+            </ul>
+          </div><br>
+        <% }) %>
+  
+        <form action="" method="POST">
+            <div class="btn btn-success form-control">Pedir</div>
+        </form><br>
+      <% } %>
+
+    </div>
+</body>
+<%- include('../partials/scripts.ejs') %>
+</html>
+
+

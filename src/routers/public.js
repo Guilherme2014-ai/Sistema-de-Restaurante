@@ -7,6 +7,11 @@ router.get('/', async (req,res) => {
 router.get('/cardapio/:nome', async (req,res) => {
     require('../controllers/public').food_id(req,res,knex)
 })
+router.get('/shoppingcart', async (req,res) => {
+    require('../controllers/public').shoppingcart(req,res,knex)
+})
+
+
 router.post('/shoppingcart', async (req,res) => {
     require('../controllers/public').POST_shoppingcart(req,res)
 })

@@ -37,11 +37,19 @@ module.exports.food_id = async (req,res,knex) => {
         res.render('public/food_id.ejs',{ data, categories })
     } catch(err){console.error(err)}
 }
+module.exports.shoppingcart = async (req,res,knex) => {
+    try{
+
+        const categories = await knex.select("*").table("categorias")
+        res.render('public/shoppingCart',{ req, categories })
+
+    } catch(err){console.error(err)}
+}
 
 
 module.exports.POST_shoppingcart = (req,res) => {
-    const { name,price,img } = req.body;
-    const obj = { name,price,img }
+    const { name,price,img,info } = req.body;
+    const obj = { name,price,img,info }
 
     req.session.user["shoppingcart"].push(obj)
     res.redirect('/')
