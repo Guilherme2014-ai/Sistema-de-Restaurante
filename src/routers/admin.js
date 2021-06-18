@@ -13,6 +13,9 @@ router.get('/delete/:id', (req,res) => {
 router.get('/orders', (req,res) => {
     require('../controllers/admin').orders(req,res,knex)
 })
+router.get('/orders/delete/:id', (req,res) => {
+    require('../controllers/admin').orders_delete(req,res,knex)
+})
 
 
 router.post('/edit', (req,res) => {

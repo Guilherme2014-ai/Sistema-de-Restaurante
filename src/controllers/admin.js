@@ -34,13 +34,28 @@ module.exports.delete = (req,res,knex) => {
     .then(result => {res.redirect('/admin')})
     .catch(err => {console.error(err)})
 }
-/*
 module.exports.orders = async (req,res,knex) => {
     try{
         const data = await knex.select("*").table("pedidos")
+        const categories = await knex.select("*").table("categorias")
+        res.render('admin/orders', { categories, data })
     } catch(err){console.error(err)}
 }
-*/
+module.exports.orders_delete = async (req,res,knex) => {
+    try{
+
+        const { id } = req.params
+
+        await knex
+            .where('id', id)
+            .delete()
+            .table("pedidos")
+
+        res.redirect('/admin/orders')
+
+    } catch(err){console.error(err)}
+}
+// cada usuario pode ter vairios pedidos, dps arrume isso
 
 module.exports.POST_edit = async (req,res,knex) => {
     try{
