@@ -85,7 +85,7 @@ module.exports.auth = (req,res) => {
     req.session.user['admin'] = true
 
     req.flash('message', 'Conectado Com Sucesso')
-    res.redirect('/')
+    res.redirect('/admin')
 }
 
 
@@ -93,6 +93,7 @@ module.exports.POST_shoppingcart = (req,res) => {
     const { name,price,img } = req.body;
     const obj = { name,price,img }
 
+    req.flash('message','Adicionado ao Carrinho !')
     req.session.user["shoppingcart"].push(obj)
     res.redirect('/')
 }
