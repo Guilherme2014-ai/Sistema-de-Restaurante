@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<%- include('../partials/headers.ejs') %>
+<body style="background: -webkit-radial-gradient(rgb(39, 39, 85),rgb(219, 219, 250),rgb(175, 175, 233));">
+    <div class="container" style="background: rgb(219, 219, 250);"><br><br>
+          
+        <form action="/admin/new_food" method="POST" class="form-control">
+
+            <h2>Criaçao de Cardápio</h2><hr><br>
+            
+            <select class="form-control" name="category_id" id="category_id">
+                <option value="NULO">Categoria do Prato</option>
+                <% categories.forEach(function(category){ %>
+                    <option value="<%= category.id %>"><%= category.categoria %></option>
+                <% }) %> 
+            </select><br>
+
+            <input type="text" class="form-control" name="name" id="name" placeholder="Nome do Prato" required><br>
+            <input type="text" class="form-control" name="info" id="info" placeholder="Sobre o Prato" required><br>
+            <input type="text" class="form-control" name="img" id="img" placeholder="Imagem do Prato" required><br>
+            <input type="text" class="form-control" name="price" id="price" placeholder="Preço do Prato" required><br>
+
+            <button type="submit" class="btn btn-success">Adicionar</button>
+        </form><br><br>
+
+    </div>
+</body>
+<%- include('../partials/scripts.ejs') %>
+</html>

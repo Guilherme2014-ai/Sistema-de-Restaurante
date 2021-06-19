@@ -16,10 +16,23 @@ router.get('/orders', (req,res) => {
 router.get('/orders/delete/:id', (req,res) => {
     require('../controllers/admin').orders_delete(req,res,knex)
 })
+router.get('/new_category', (req,res) => {
+    require('../controllers/admin').new_category(req,res)
+})
+router.get('/new_food', (req,res) => {
+    require('../controllers/admin').new_food(req,res,knex)
+})
+
 
 
 router.post('/edit', (req,res) => {
     require('../controllers/admin').POST_edit(req,res,knex)
+})
+router.post('/new_category', (req,res) => {
+    require('../controllers/admin').POST_new_category(req,res,knex)
+})
+router.post('/new_food', (req,res) => {
+    require('../controllers/admin').POST_new_food(req,res,knex)
 })
 
 module.exports = router;

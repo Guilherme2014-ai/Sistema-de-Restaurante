@@ -13,8 +13,7 @@ module.exports.index = async (req,res,knex) => {
                 .innerJoin('categorias','categorias.id','cardapio.category_id')
                 .table("cardapio")
 
-
-        res.render('public/index',{ data, categories})
+        res.render('public/index',{ data, categories, message: req.flash("message") })
 
     } catch(err){console.error(err)}
 }
@@ -45,7 +44,7 @@ module.exports.shoppingcart = async (req,res,knex) => {
 
     } catch(err){console.error(err)}
 }
-module.exports.order_request = async (req,res,knex) => {
+module.exports.order_request = async (req,res,knex,flash) => {
     try{
 
         const order = req.session.user["shoppingcart"];
@@ -67,8 +66,8 @@ module.exports.order_request = async (req,res,knex) => {
             .table('pedidos')
         })
         
-        
-        res.send("Tela de Obrigado")
+        req.flash("message",'Pedido Feito com Sucesso, Agora So aguardar...')
+        res.redirect('/')
 
     } catch(err){console.error(err)}
 }

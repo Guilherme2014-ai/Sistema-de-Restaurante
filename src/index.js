@@ -1,6 +1,6 @@
 const express = require('express')
 const session = require('express-session')
-const flash = require('flash')
+const flash = require('connect-flash')
 const PORT = process.env.PORT || 80
 
 const app = express()
@@ -15,9 +15,9 @@ app.set('views', './views')
 
 //===========Session============================
 app.use(session({
-    secret: 'gabrielViado2014',
+    secret: 'gabrielviado2014',
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: { maxAge: 60000 } // || secure: true
 }))
 app.use(flash())

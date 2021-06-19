@@ -5,7 +5,11 @@
     <div class="container" style="background: rgb(219, 219, 250);">
 
 
-      <%- include('../partials/navbar.ejs') %>
+      <%- include('../partials/navbar_admin.ejs') %>
+
+      <% if(message.length > 0){ %>
+        <div id="message"><p class="alert alert-success"><%= message %></p></div>
+      <% } %>
           
         <% data.forEach(function(food){ %>
           
@@ -32,5 +36,15 @@
 
     </div>
 </body>
+<script>
+
+var message = document.getElementById('message')
+
+setInterval(() => {
+  message.innerHTML = ''
+}, 5000);
+
+</script>
+
 <%- include('../partials/scripts.ejs') %>
 </html>

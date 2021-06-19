@@ -8,7 +8,11 @@
       <%- include('../partials/navbar.ejs') %>
 
       <a href="/shoppingcart"><img src="https://image.flaticon.com/icons/png/512/126/126510.png" alt="shoppingcart" width="50"></a><br><br>
-          
+      
+      <% if(message.length > 0){ %>
+        <div id="message"><p class="alert alert-success"><%= message %></p></div>
+      <% } %>
+      
       <% data.forEach(function(food){ %>
         
         <div class="card" style="box-shadow: rgb(149, 160, 161) 0px 3px 8px;">
@@ -37,5 +41,14 @@
 
     </div>
 </body>
+<script>
+
+  var message = document.getElementById('message')
+
+  setInterval(() => {
+    message.innerHTML = ''
+  }, 5000);
+
+</script>
 <%- include('../partials/scripts.ejs') %>
 </html>

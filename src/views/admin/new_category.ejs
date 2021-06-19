@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<%- include('../partials/headers.ejs') %>
+<body style="background: -webkit-radial-gradient(rgb(39, 39, 85),rgb(219, 219, 250),rgb(175, 175, 233));">
+    <div class="container" style="background: rgb(219, 219, 250);">
+          
+        <br><br><br><br><br><br>
+
+
+        <form action="/admin/new_category" method="POST" class="form-control" style="padding: 8px;">
+
+            <h2>Nova Categoria</h2><hr><br>
+
+            <input type="text" class="form-control" name="name" id="name" placeholder="Nome da Categoria" required><br>
+
+            <button type="submit" class="btn btn-success form-control">Criar</button>
+        </form><br><br><br><br><br><br><br><br>
+
+
+    </div>
+</body>
+<%- include('../partials/scripts.ejs') %>
+</html>
