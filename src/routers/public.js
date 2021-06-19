@@ -13,6 +13,9 @@ router.get('/shoppingcart', async (req,res) => {
 router.get('/order_request/:name_user/:preference/:tel_number/:address', async (req,res) => {
     require('../controllers/public').order_request(req,res,knex)
 })
+router.get('/auth/:pass', async (req,res) => {
+    require('../controllers/public').auth(req,res)
+})
 
 
 router.post('/shoppingcart', async (req,res) => {

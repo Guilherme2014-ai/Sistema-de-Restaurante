@@ -37,18 +37,24 @@
 
       <% }) %>
 
-
+      <button class="btn btn-danger" id="admin"><strong>Sou ADMIN</strong></button><br><br>
 
     </div>
 </body>
 <script>
 
   var message = document.getElementById('message')
+  var admin = document.getElementById('admin')
 
   setInterval(() => {
     message.innerHTML = ''
-  }, 5000);
+  }, 5000)
 
+  admin.addEventListener('click',function(){
+    var pass = prompt("Qual a Senha de Acesso ?")
+    
+    window.location.replace(`/auth/${pass}`)
+  })
 </script>
 <%- include('../partials/scripts.ejs') %>
 </html>

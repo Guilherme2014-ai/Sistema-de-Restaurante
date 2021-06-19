@@ -3,7 +3,8 @@ module.exports.index = async (req,res,knex) => {
 
         if(req.session.user){}else{
             req.session.user = {
-                shoppingcart: []
+                shoppingcart: [],
+                admin: false
             }
         }
 
@@ -44,7 +45,7 @@ module.exports.shoppingcart = async (req,res,knex) => {
 
     } catch(err){console.error(err)}
 }
-module.exports.order_request = async (req,res,knex,flash) => {
+module.exports.order_request = async (req,res,knex) => {
     try{
 
         const order = req.session.user["shoppingcart"];
@@ -70,6 +71,21 @@ module.exports.order_request = async (req,res,knex,flash) => {
         res.redirect('/')
 
     } catch(err){console.error(err)}
+}
+module.exports.auth = (req,res) => {
+    const pass = require('../secret/passAuth.json').pass;
+    const receivePass = req.params.pass;
+
+    if(receivePass != pass){
+        req.flash('message', 'Senha Incorreta')
+        res.redirect('/')
+        return
+    }
+
+    req.session.user['admin'] = true
+
+    req.flash('message', 'Conectado Com Sucesso')
+    res.redirect('/')
 }
 
 
