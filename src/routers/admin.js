@@ -37,5 +37,3 @@ router.post('/new_food', auth, (req,res) => {
 })
 
 module.exports = router;
-
-// Nao esqueca da autenticacao, controle o acesso as rotas do CRUD
